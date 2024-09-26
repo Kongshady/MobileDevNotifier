@@ -74,9 +74,7 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: CustomButton(
                     buttonName: 'DBW',
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/dbw');
-                    },
+                    onPressed: () {},
                   ),
                 ),
 
@@ -88,9 +86,7 @@ class HomeScreen extends StatelessWidget {
                 Expanded(
                   child: CustomButton(
                     buttonName: 'TEA',
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/tea');
-                    },
+                    onPressed: () {},
                   ),
                 ),
               ],
@@ -109,23 +105,39 @@ class HomeScreen extends StatelessWidget {
                       fontSize: 22,
                       fontWeight: FontWeight.bold),
                 ),
+                // Body Mass Index
+                CalculatorTile(
+                  tileTitle: 'Body Mass Index',
+                  icon: Icons.line_weight_outlined,
+                  onTap: () {},
+                ),
+
+                // Desirable body weight
                 CalculatorTile(
                   tileTitle: 'Desirable Body Weight',
                   icon: Icons.monitor_weight,
                   onTap: () {
-                    Navigator.pushNamed(context, '/second');
+                    Navigator.pushNamed(context, '/dbw');
                   },
                 ),
+
+                // Total Energy Allowance
                 CalculatorTile(
                   tileTitle: 'Total Energy Allowance',
                   icon: Icons.energy_savings_leaf,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/tea');
+                  },
                 ),
+
+                // Convert to CPF
                 CalculatorTile(
                   tileTitle: 'Convert to CPF',
                   icon: Icons.conveyor_belt,
                   onTap: () {},
                 ),
+
+                // Create Meal Plan
                 CalculatorTile(
                   tileTitle: 'Create Meal Plan',
                   icon: Icons.create,

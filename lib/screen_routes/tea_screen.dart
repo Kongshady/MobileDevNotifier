@@ -13,7 +13,7 @@ class TEAScreen extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             title: const Text(
-              'Desirable body Weight',
+              'Total Energy Allowance',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -27,7 +27,8 @@ class TEAScreen extends StatelessWidget {
             children: [
               TabBar(
                 labelColor: Colors.green,
-                // indicatorColor: Colors.green,
+                indicatorColor: Colors.green,
+                indicatorSize: TabBarIndicatorSize.tab,
                 tabs: [
                   // First Tab Icon holder
                   Tab(
