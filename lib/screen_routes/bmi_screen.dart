@@ -22,8 +22,11 @@ class _BMIScreenState extends State<BMIScreen> {
     final weight = double.tryParse(_weightController.text);
 
     if (feet != null && inches != null && weight != null && weight > 0) {
-      double heightInMeters = (feet * 0.3048) + (inches * 0.0254);
-      double bmi = weight / (heightInMeters * heightInMeters);
+      // Convert height from feet and inches to total inches
+      final totalHeightInInches = (feet * 12) + inches;
+
+      // Calculate BMI using the imperial formula
+      double bmi = (weight * 703) / (totalHeightInInches * totalHeightInInches);
 
       setState(() {
         output = bmi.toStringAsFixed(2);
