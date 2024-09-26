@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health_app/screen_routes/home_screen.dart';
-import 'package:health_app/screen_routes/second_screen.dart';
+// import 'package:health_app/screen_routes/home_screen.dart';
+import 'package:health_app/screen_routes/dbw_screen.dart';
+import 'package:health_app/screen_routes/tea_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const TEAScreen(),
       routes: {
-        '/second': (context) => const SecondScreen(),
+        '/dbw': (context) => const DBWScreen(),
+        '/tea': (context) => const TEAScreen(),
       },
       theme: ThemeData(
         fontFamily: 'Poppins',

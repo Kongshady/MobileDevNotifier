@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_app/widgets/calculator_tile.dart';
 import 'package:health_app/widgets/history_tile.dart';
 import 'package:health_app/widgets/custom_button.dart';
-import 'package:health_app/widgets/homescreen_drawer.dart';
+// import 'package:health_app/widgets/homescreen_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
 
       // Drawer
 
-      drawer: const HomescreenDrawer(),
+      // drawer: const HomescreenDrawer(),
 
       // Body
 
@@ -68,17 +68,31 @@ class HomeScreen extends StatelessWidget {
             // Row of buttons
             const SizedBox(height: 10),
 
-            const Row(
+            Row(
               children: [
-                Expanded(child: CustomButton(buttonName: 'DBW')),
-                // TEA BUTTON
+                // DBW BUTTON
+                Expanded(
+                  child: CustomButton(
+                    buttonName: 'DBW',
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/dbw');
+                    },
+                  ),
+                ),
 
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
 
                 // TEA BUTTON
-                Expanded(child: CustomButton(buttonName: 'TEA')),
+                Expanded(
+                  child: CustomButton(
+                    buttonName: 'TEA',
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/tea');
+                    },
+                  ),
+                ),
               ],
             ),
 
@@ -86,9 +100,9 @@ class HomeScreen extends StatelessWidget {
               height: 20,
             ),
 
-            const Column(
+            Column(
               children: [
-                Text(
+                const Text(
                   'Calculators',
                   style: TextStyle(
                       color: Colors.green,
@@ -98,18 +112,24 @@ class HomeScreen extends StatelessWidget {
                 CalculatorTile(
                   tileTitle: 'Desirable Body Weight',
                   icon: Icons.monitor_weight,
+                  onTap: () {
+                    Navigator.pushNamed(context, '/second');
+                  },
                 ),
                 CalculatorTile(
                   tileTitle: 'Total Energy Allowance',
                   icon: Icons.energy_savings_leaf,
+                  onTap: () {},
                 ),
                 CalculatorTile(
                   tileTitle: 'Convert to CPF',
                   icon: Icons.conveyor_belt,
+                  onTap: () {},
                 ),
                 CalculatorTile(
                   tileTitle: 'Create Meal Plan',
                   icon: Icons.create,
+                  onTap: () {},
                 ),
               ],
             )

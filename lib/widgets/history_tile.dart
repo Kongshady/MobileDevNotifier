@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HistoryTile extends StatelessWidget {
-  const HistoryTile({super.key, required this.textTitle, this.icon});
+  const HistoryTile({super.key, required this.textTitle});
   final String textTitle;
-  final icon;
+  // final icon;
 
   @override
   Widget build(BuildContext context) {
