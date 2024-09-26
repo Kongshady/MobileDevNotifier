@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:health_app/widgets/custom_button.dart';
 import 'package:health_app/widgets/custom_textfield.dart';
 
-class DBWScreen extends StatelessWidget {
+class DBWScreen extends StatefulWidget {
   const DBWScreen({super.key});
+
+  @override
+  State<DBWScreen> createState() => _DBWScreenState();
+}
+
+class _DBWScreenState extends State<DBWScreen> {
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +55,21 @@ class DBWScreen extends StatelessWidget {
               // * Infants * Children * Adults
 
               // Height textfield
-              const CustomTextfield(tfName: 'Height'),
+              CustomTextfield(
+                limitText: 1,
+                tfName: 'Height',
+                controllerInput: _controller,
+              ),
               const SizedBox(
                 height: 10,
               ),
 
               // Weight in pounds textfield
-              const CustomTextfield(tfName: 'Weight (Pounds)'),
+              CustomTextfield(
+                limitText: 1,
+                tfName: 'Weight (Pounds)',
+                controllerInput: _controller,
+              ),
               const SizedBox(
                 height: 10,
               ),

@@ -70,10 +70,22 @@ class HomeScreen extends StatelessWidget {
 
             Row(
               children: [
+                // BMI BUTTON
+                Expanded(
+                  child: CustomButton(
+                    buttonName: 'Show BMI',
+                    onPressed: () {},
+                  ),
+                ),
+
+                const SizedBox(
+                  width: 10,
+                ),
+
                 // DBW BUTTON
                 Expanded(
                   child: CustomButton(
-                    buttonName: 'DBW',
+                    buttonName: 'Show DBW',
                     onPressed: () {},
                   ),
                 ),
@@ -85,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                 // TEA BUTTON
                 Expanded(
                   child: CustomButton(
-                    buttonName: 'TEA',
+                    buttonName: 'Show TEA',
                     onPressed: () {},
                   ),
                 ),
@@ -109,7 +121,9 @@ class HomeScreen extends StatelessWidget {
                 CalculatorTile(
                   tileTitle: 'Body Mass Index',
                   icon: Icons.line_weight_outlined,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, '/bmi');
+                  },
                 ),
 
                 // Desirable body weight
