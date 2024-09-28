@@ -57,6 +57,70 @@ class _BMIScreenState extends State<BMIScreen> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
+            // BMI CATEGORY
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    color: Colors.green,
+                    width: double.infinity,
+                    child: const Text(
+                      'BMI Category',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    color: Colors.white,
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Underweight = <18.5',
+                          style: TextStyle(color: Colors.green),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          'Normal weight = 18.5 - 24.9',
+                          style: TextStyle(color: Colors.green),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          'Over weight = 25 - 29.9',
+                          style: TextStyle(color: Colors.green),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                        Text(
+                          'Obesity = BMI Greater than 30',
+                          style: TextStyle(color: Colors.green),
+                        ),
+                        SizedBox(
+                          height: 2,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
             // Output Display
             Container(
               width: double.infinity,
@@ -124,7 +188,7 @@ class _BMIScreenState extends State<BMIScreen> {
 
             // Custom text field for Weight
             CustomTextfield(
-              limitText: 5,
+              limitText: 6,
               tfName: 'Weight (Pounds)',
               controllerInput: _weightController,
             ),
@@ -144,46 +208,6 @@ class _BMIScreenState extends State<BMIScreen> {
             const SizedBox(
               height: 20,
             ),
-
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Container(
-                color: Colors.green,
-                width: double.infinity,
-                padding: const EdgeInsets.all(15),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'BMI Category',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'UnderWeight:    <18.5',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Normal Weight:  18.5 - 24.9',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Overweight:     25 - 29.9',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      'Obese:          Greater than 30',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            )
           ],
         ),
       ),
