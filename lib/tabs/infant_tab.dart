@@ -1,14 +1,130 @@
 import 'package:flutter/material.dart';
+import 'package:health_app/widgets/custom_button.dart';
+import 'package:health_app/widgets/custom_textfield.dart';
 
-class InfantTab extends StatelessWidget {
+class InfantTab extends StatefulWidget {
   const InfantTab({super.key});
 
   @override
+  State<InfantTab> createState() => _InfantTabState();
+}
+
+class _InfantTabState extends State<InfantTab> {
+  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _dbwController = TextEditingController();
+
+  String output = 'Display Output';
+
+  void _displayOutput() {
+    final age = int.tryParse(_ageController.text);
+    final dbw = int.tryParse(_dbwController.text);
+
+    if (age != null && dbw != null && age > 0) {
+      int tea;
+
+      if (age >= 1 && age <= 6) {
+        tea = 120 * dbw;
+      } else if (age >= 7 && age <= 12) {
+        tea = 110 * dbw;
+      } else {
+        setState(() {
+          output = "Age must be between 1 and 12 months";
+        });
+        return;
+      }
+
+      setState(() {
+        output = "$tea kcal/day";
+      });
+    } else {
+      setState(() {
+        output = "Please enter valid age and DBW.";
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return  const Center(
-      child: Text(
-        'Infant Area',
-        style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Infant',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10), color: Colors.green),
+              padding: const EdgeInsets.all(18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Display Output
+                  Text(
+                    output,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  // Can copy the output
+                  GestureDetector(
+                    child: const Icon(
+                      Icons.copy,
+                      color: Colors.white,
+                    ),
+                    onTap: () {
+                      // Show "Copied" Message
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Output copied!')),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            CustomTextfield(
+              tfName: "Age (Months)",
+              controllerInput: _ageController,
+              limitText: 2,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            CustomTextfield(
+              tfName: "Desirable body weight",
+              controllerInput: _dbwController,
+              limitText: 2,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: CustomButton(
+                buttonName: "Calculate",
+                onPressed: () {
+                  _displayOutput();
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
