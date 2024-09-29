@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_app/widgets/custom_button.dart';
+import 'package:health_app/widgets/custom_display_output.dart';
 import 'package:health_app/widgets/custom_textfield.dart';
 
 class InfantTab extends StatefulWidget {
@@ -62,39 +63,10 @@ class _InfantTabState extends State<InfantTab> {
             const SizedBox(
               height: 10,
             ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.green),
-              padding: const EdgeInsets.all(18.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // Display Output
-                  Text(
-                    output,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
 
-                  // Can copy the output
-                  GestureDetector(
-                    child: const Icon(
-                      Icons.copy,
-                      color: Colors.white,
-                    ),
-                    onTap: () {
-                      // Show "Copied" Message
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Output copied!')),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
+            // Custom Display Output
+            CustomDisplayOutput(outputName: output),
+
             const SizedBox(
               height: 10,
             ),

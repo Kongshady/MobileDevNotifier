@@ -23,10 +23,6 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
       ),
 
-      // Drawer
-
-      // drawer: const HomescreenDrawer(),
-
       // Body
 
       body: SingleChildScrollView(
