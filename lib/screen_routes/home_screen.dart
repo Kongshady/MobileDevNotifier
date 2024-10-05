@@ -30,81 +30,80 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Column(
-                  children: [
-                    Container(
-                      color: Colors.green,
-                      padding: const EdgeInsets.all(10),
-                      width: double.infinity,
-                      child: const Text(
-                        'Your History',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+              ExpansionTile(
+                title: const Text(
+                  'Calculation History',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                subtitle: const Text(
+                  'Show your previous Calculations',
+                  style: TextStyle(fontSize: 12),
+                ),
+                iconColor: Colors.white,
+                textColor: Colors.white,
+                backgroundColor: Colors.green,
+                collapsedBackgroundColor: Colors.green,
+                collapsedTextColor: Colors.white,
+                collapsedIconColor: Colors.white,
+                collapsedShape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide.none,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                children: [
+                  Container(
+                    height: 250,
+                    color: Colors.grey[300],
+                    child: ListView(
+                      children: const [
+                        HistoryTile(textTitle: 'Previous DBW: 55.8'),
+                        HistoryTile(textTitle: 'Previous TEA: 1500'),
+                        HistoryTile(textTitle: 'Previous TEA: 1432'),
+                        HistoryTile(textTitle: 'Previous DBW: 60'),
+                        HistoryTile(textTitle: 'Previous DBW: 60'),
+                        HistoryTile(textTitle: 'Previous DBW: 60'),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      // BMI BUTTON
+                      Expanded(
+                        child: CustomButton(
+                          buttonName: 'Show BMI',
+                          onPressed: () {},
                         ),
                       ),
-                    ),
-                    Container(
-                      height: 200,
-                      color: Colors.grey[300],
-                      child: ListView(
-                        children: const [
-                          HistoryTile(textTitle: 'Previous DBW: 55.8'),
-                          HistoryTile(textTitle: 'Previous TEA: 1500'),
-                          HistoryTile(textTitle: 'Previous TEA: 1432'),
-                          HistoryTile(textTitle: 'Previous DBW: 60'),
-                        ],
+
+                      const SizedBox(
+                        width: 10,
                       ),
-                    ),
-                  ],
-                ),
-              ),
 
-              // Row of buttons
-              const SizedBox(height: 10),
+                      // DBW BUTTON
+                      Expanded(
+                        child: CustomButton(
+                          buttonName: 'Show DBW',
+                          onPressed: () {},
+                        ),
+                      ),
 
-              Row(
-                children: [
-                  // BMI BUTTON
-                  Expanded(
-                    child: CustomButton(
-                      buttonName: 'Show BMI',
-                      onPressed: () {},
-                    ),
-                  ),
+                      const SizedBox(
+                        width: 10,
+                      ),
 
-                  const SizedBox(
-                    width: 10,
-                  ),
-
-                  // DBW BUTTON
-                  Expanded(
-                    child: CustomButton(
-                      buttonName: 'Show DBW',
-                      onPressed: () {},
-                    ),
-                  ),
-
-                  const SizedBox(
-                    width: 10,
-                  ),
-
-                  // TEA BUTTON
-                  Expanded(
-                    child: CustomButton(
-                      buttonName: 'Show TEA',
-                      onPressed: () {},
-                    ),
+                      // TEA BUTTON
+                      Expanded(
+                        child: CustomButton(
+                          buttonName: 'Show TEA',
+                          onPressed: () {},
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-
-              const SizedBox(
-                height: 20,
-              ),
-
+              const SizedBox(height: 10),
               Column(
                 children: [
                   const Text(
@@ -143,14 +142,14 @@ class HomeScreen extends StatelessWidget {
 
                   // Convert to CPF
                   CalculatorTile(
-                    tileTitle: 'Convert to CPF',
+                    tileTitle: 'Convert to CPF (Coming Soon)',
                     icon: Icons.conveyor_belt,
                     onTap: () {},
                   ),
 
                   // Create Meal Plan
                   CalculatorTile(
-                    tileTitle: 'Create Meal Plan',
+                    tileTitle: 'Create Meal Plan (Coming Soon)',
                     icon: Icons.create,
                     onTap: () {},
                   ),

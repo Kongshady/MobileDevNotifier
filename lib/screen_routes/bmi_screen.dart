@@ -16,6 +16,13 @@ class _BMIScreenState extends State<BMIScreen> {
   final TextEditingController _weightController = TextEditingController();
 
   String output = 'Display Output';
+  bool _isExpanded = false; // Variable to manage the height of the Container
+
+  void _toggleContainer() {
+    setState(() {
+      _isExpanded = !_isExpanded; // Toggle the boolean value
+    });
+  }
 
   void _calculateBMI() {
     final feet = int.tryParse(_feetController.text);
@@ -50,137 +57,111 @@ class _BMIScreenState extends State<BMIScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.green,
+        backgroundColor: Colors.green,
+        foregroundColor: Colors.white,
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(_isExpanded ? Icons.info : Icons.info_outline),
+            onPressed: _toggleContainer,
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            // BMI CATEGORY
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    color: Colors.green,
-                    width: double.infinity,
-                    child: const Text(
-                      'BMI Category',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    width: double.infinity,
-                    color: Colors.white,
-                    child: const Column(
+      body: Column(
+        children: [
+          AnimatedContainer(
+            color: Colors.green,
+            width: double.infinity,
+            height: _isExpanded ? 160 : 0,
+            duration: const Duration(milliseconds: 100),
+            padding: const EdgeInsets.all(20),
+            child: _isExpanded
+                ? const SingleChildScrollView(
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Underweight = <18.5',
-                          style: TextStyle(color: Colors.green),
+                          'BMI Category',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white),
                         ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          'Normal weight = 18.5 - 24.9',
-                          style: TextStyle(color: Colors.green),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          'Over weight = 25 - 29.9',
-                          style: TextStyle(color: Colors.green),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          'Obesity = BMI Greater than 30',
-                          style: TextStyle(color: Colors.green),
-                        ),
-                        SizedBox(
-                          height: 2,
-                        ),
+                        SizedBox(height: 5),
+                        Text('Underweight = <18.5',
+                            style: TextStyle(color: Colors.white)),
+                        Text('Normal weight = 18.5 - 24.9',
+                            style: TextStyle(color: Colors.white)),
+                        Text('Over weight = 25 - 29.9',
+                            style: TextStyle(color: Colors.white)),
+                        Text('Obesity = BMI Greater than 30',
+                            style: TextStyle(color: Colors.white)),
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  )
+                : const SizedBox.shrink(), // Show nothing if not expanded
+          ),
 
-            const SizedBox(
-              height: 10,
-            ),
+          // Calculator Below
 
-            // Output Display
-            CustomDisplayOutput(outputName: output),
-
-            const SizedBox(
-              height: 10,
-            ),
-
-            // Custom text fields for Height
-            Row(
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
               children: [
-                // Feet textfield
-                Expanded(
-                  child: CustomTextfield(
-                    limitText: 1,
-                    tfName: 'Feet',
-                    controllerInput: _feetController,
-                  ),
-                ),
-                const SizedBox(width: 10),
+                const SizedBox(height: 10),
 
-                // Inches textfield
-                Expanded(
-                  child: CustomTextfield(
-                    limitText: 2,
-                    tfName: 'Inches',
-                    controllerInput: _inchesController,
+                // Output Display
+                CustomDisplayOutput(outputName: output),
+
+                const SizedBox(height: 10),
+
+                // Custom text fields for Height
+                Row(
+                  children: [
+                    // Feet textfield
+                    Expanded(
+                      child: CustomTextfield(
+                        limitText: 1,
+                        tfName: 'Feet',
+                        controllerInput: _feetController,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+
+                    // Inches textfield
+                    Expanded(
+                      child: CustomTextfield(
+                        limitText: 2,
+                        tfName: 'Inches',
+                        controllerInput: _inchesController,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+
+                // Custom text field for Weight
+                CustomTextfield(
+                  limitText: 6,
+                  tfName: 'Weight (Pounds)',
+                  controllerInput: _weightController,
+                ),
+                const SizedBox(height: 10),
+
+                // Custom Button
+                SizedBox(
+                  width: double.infinity,
+                  child: CustomButton(
+                    buttonName: 'Calculate',
+                    onPressed: _calculateBMI,
                   ),
                 ),
+
+                const SizedBox(height: 20),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-
-            // Custom text field for Weight
-            CustomTextfield(
-              limitText: 6,
-              tfName: 'Weight (Pounds)',
-              controllerInput: _weightController,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-
-            // Custom Button
-            SizedBox(
-              width: double.infinity,
-              child: CustomButton(
-                buttonName: 'Calculate',
-                onPressed: _calculateBMI,
-              ),
-            ),
-
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
