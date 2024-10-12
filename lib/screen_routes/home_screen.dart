@@ -12,10 +12,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Health Weigh App',
+          'NutriCalc',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+            letterSpacing: 1,
           ),
         ),
         backgroundColor: Colors.green,
@@ -112,6 +113,10 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.green,
                         fontSize: 22,
                         fontWeight: FontWeight.bold),
+                  ),
+                  const Divider(
+                    height: 10,
+                    // color: Colors.green,
                   ),
                   // Body Mass Index
                   CalculatorTile(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_app/onboarding/on_boarding.dart';
 import 'package:health_app/screen_routes/bmi_screen.dart';
 import 'package:health_app/screen_routes/dbw_screen.dart';
 import 'package:health_app/screen_routes/home_screen.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const OnBoarding(),
       routes: {
         '/dbw': (context) => const DBWScreen(),
         '/tea': (context) => const TEAScreen(),
