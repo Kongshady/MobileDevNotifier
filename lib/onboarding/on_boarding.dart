@@ -59,7 +59,8 @@ class _OnBoardingState extends State<OnBoarding> {
                   SmoothPageIndicator(
                     controller: _controller,
                     count: 3,
-                    effect: const SlideEffect(activeDotColor: Colors.green),
+                    effect:
+                        const SlideEffect(activeDotColor: Color(0xFF4CAF50)),
                   ),
 
                 // Next or Get Started Button

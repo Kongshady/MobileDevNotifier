@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:health_app/onboarding/on_boarding.dart';
 import 'package:health_app/screen_routes/bmi_screen.dart';
 import 'package:health_app/screen_routes/dbw_screen.dart';
-import 'package:health_app/screen_routes/home_screen.dart';
+// import 'package:health_app/screen_routes/home_screen.dart';
 import 'package:health_app/screen_routes/tea_screen.dart';
 
 void main() {
