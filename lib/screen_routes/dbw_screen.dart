@@ -32,15 +32,13 @@ class _DBWScreenState extends State<DBWScreen> {
     double desirableWeight;
 
     if (methodDropdownValue == 'NDAP Method') {
-      // Example calculation based on NDAP Method (adjust as necessary)
       desirableWeight = (height * height) *
           22 /
-          10000; // BMI of 22 as a reference assuming height in cm
+          10000;
     } else {
-      // Example calculation based on Tanhaussers Method (adjust as necessary)
       desirableWeight = (height * height) *
           24 /
-          10000; // BMI of 24 as a reference assuming height in cm
+          10000; 
     }
 
     setState(() {
