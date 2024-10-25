@@ -1,36 +1,34 @@
-// Notifier is Useful when separating the UI and the function to be more readable.
+import 'package:flutter/material.dart';
+import 'package:riverpod/riverpod.dart';  
 
-import 'package:flutter/material.dart';  
+class BmiNotifier extends StateNotifier<double?> {  
+  BmiNotifier() : super(null);  
 
-class BmiNotifier with ChangeNotifier {  
-  final TextEditingController _feetController = TextEditingController();  
-  final TextEditingController _inchesController = TextEditingController();  
-  final TextEditingController _weightController = TextEditingController();  
-
-  String output = 'Display Output';  
-  bool _isExpanded = false;  
-
-  TextEditingController get feetController => _feetController;  
-  TextEditingController get inchesController => _inchesController;  
-  TextEditingController get weightController => _weightController;  
-
-  void toggleContainer() {  
-    _isExpanded = !_isExpanded;
-    notifyListeners(); 
-  }  
+  final TextEditingController feetController = TextEditingController();  
+  final TextEditingController inchesController = TextEditingController();  
+  final TextEditingController weightController = TextEditingController();  
 
   void calculateBMI() {  
-    final feet = int.tryParse(_feetController.text);  
-    final inches = int.tryParse(_inchesController.text);  
-    final weight = double.tryParse(_weightController.text);  
+    final feet = int.tryParse(feetController.text);  
+    final inches = int.tryParse(inchesController.text);  
+    final weight = double.tryParse(weightController.text);  
 
     if (feet != null && inches != null && weight != null && weight > 0) {  
       final totalHeightInInches = (feet * 12) + inches;  
       double bmi = (weight * 703) / (totalHeightInInches * totalHeightInInches);  
-      output = bmi.toStringAsFixed(2);  
+      state = bmi; // Update BMI state  
     } else {  
-      output = 'Invalid';  
+      state = null; // Invalid input  
     }  
-    notifyListeners(); 
   }  
-}
+
+  void disposeControllers() {  
+    feetController.dispose();  
+    inchesController.dispose();  
+    weightController.dispose();  
+  }  
+}  
+
+final bmiNotifierProvider = StateNotifierProvider<BmiNotifier, double?>((ref) {  
+  return BmiNotifier();  
+});
